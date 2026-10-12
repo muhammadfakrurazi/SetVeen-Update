@@ -31,14 +31,13 @@
       }
     }
   </script>
-  <!-- Menghubungkan file CSS Eksternal -->
+  <!-- Menghubungkan CSS Eksternal -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex antialiased bg-[#f8fafc] text-slate-800">
 
 <!-- BEGIN: Sticky Topbar -->
 <header class="h-16 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between fixed top-0 left-0 right-0 z-30 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-  <!-- Left: Collapse Toggle + Logo "G" & Subtitle -->
   <div class="flex items-center gap-2.5 sm:gap-3">
     <button class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-600 flex items-center justify-center transition-colors shadow-2xs cursor-pointer shrink-0" onclick="toggleSidebar()" title="Buka/Tutup Sidebar">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -57,7 +56,6 @@
     </div>
   </div>
 
-  <!-- Center: Pill switch Dataset -->
   <div class="flex items-center bg-slate-100 p-0.5 sm:p-1 rounded-xl sm:rounded-2xl border border-slate-200/70 shadow-xs">
     <button class="px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all text-slate-600 hover:text-slate-900 truncate" id="pill-ds-1" onclick="switchDatasetType(1)">
       <span class="hidden sm:inline">Dataset 1: </span>Mahasiswa
@@ -67,7 +65,6 @@
     </button>
   </div>
 
-  <!-- Right: Badge & User Avatar -->
   <div class="flex items-center gap-2 sm:gap-3">
     <span class="px-2.5 sm:px-3.5 py-1.5 bg-blue-50 text-blue-700 border border-blue-200/60 rounded-full text-[11px] sm:text-xs font-bold tracking-wide shadow-xs hidden sm:inline-block" id="header-data-badge">20 Data Mahasiswa</span>
     <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-700 font-bold text-xs flex items-center justify-center shadow-xs shrink-0" title="User Aktif">
@@ -1114,7 +1111,7 @@
 </div>
 <!-- END: Modal Tambah Data -->
 
-<!-- Menghubungkan file JavaScript Eksternal -->
+<!-- Menghubungkan JavaScript Eksternal -->
 <script src="script.js"></script>
 </body>
 </html>
