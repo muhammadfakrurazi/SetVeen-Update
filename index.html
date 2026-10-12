@@ -31,16 +31,14 @@
       }
     }
   </script>
-  <!-- Link CSS Eksternal -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex antialiased bg-[#f8fafc] text-slate-800">
 
 <!-- BEGIN: Sticky Topbar -->
-<header class="h-16 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between fixed top-0 left-0 right-0 z-30 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-  <!-- Left: Collapse Toggle + Logo "G" & Subtitle -->
+<header class="h-16 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between fixed top-0 left-0 right-0 z-50 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
   <div class="flex items-center gap-2.5 sm:gap-3">
-    <button class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-600 flex items-center justify-center transition-colors shadow-2xs cursor-pointer shrink-0" onclick="toggleSidebar()" title="Buka/Tutup Sidebar">
+    <button class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-600 flex items-center justify-center transition-colors shadow-2xs cursor-pointer shrink-0 z-50" onclick="toggleSidebar()" title="Buka/Tutup Sidebar">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
@@ -57,20 +55,28 @@
     </div>
   </div>
 
-  <!-- Center: Pill switch Dataset -->
   <div class="flex items-center bg-slate-100 p-0.5 sm:p-1 rounded-xl sm:rounded-2xl border border-slate-200/70 shadow-xs">
-    <button class="px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all text-slate-600 hover:text-slate-900 truncate" id="pill-ds-1" onclick="switchDatasetType(1)">
+    <button class="px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all text-slate-600 hover:text-slate-900 truncate cursor-pointer" id="pill-ds-1" onclick="switchDatasetType(1)">
       <span class="hidden sm:inline">Dataset 1: </span>Mahasiswa
     </button>
-    <button class="px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all bg-[#3B82F6] text-white shadow-xs truncate" id="pill-ds-2" onclick="switchDatasetType(2)">
+    <button class="px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all bg-[#3B82F6] text-white shadow-xs truncate cursor-pointer" id="pill-ds-2" onclick="switchDatasetType(2)">
       <span class="hidden sm:inline">Dataset 2: </span>Produk
     </button>
   </div>
 
+  <div class="flex items-center gap-2 sm:gap-3">
+    <span class="px-2.5 sm:px-3.5 py-1.5 bg-blue-50 text-blue-700 border border-blue-200/60 rounded-full text-[11px] sm:text-xs font-bold tracking-wide shadow-xs hidden sm:inline-block" id="header-data-badge">20 Data Mahasiswa</span>
+    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-700 font-bold text-xs flex items-center justify-center shadow-xs shrink-0" title="User Aktif">
+      M
+    </div>
+  </div>
+</header>
+<!-- END: Sticky Topbar -->
+
 <!-- BEGIN: Sidebar -->
 <aside class="w-[240px] fixed left-0 top-16 h-[calc(100vh-4rem)] bg-[#F8FAFC] border-r border-slate-200/80 z-40 flex flex-col justify-between select-none" id="main-sidebar">
   <div class="flex-1 overflow-y-auto p-3 space-y-1.5">
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 bg-[#DBEAFE] text-[#2563EB] border-l-4 border-[#2563EB] shadow-xs group" id="nav-dashboard" onclick="switchTab('dashboard')" title="Dashboard">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 bg-[#DBEAFE] text-[#2563EB] border-l-4 border-[#2563EB] shadow-xs group cursor-pointer" id="nav-dashboard" onclick="switchTab('dashboard')" title="Dashboard">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
         <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
@@ -79,20 +85,20 @@
       </svg>
       <span class="nav-label whitespace-nowrap">Dashboard</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-dataset" onclick="switchTab('dataset')" title="Dataset">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-dataset" onclick="switchTab('dataset')" title="Dataset">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7M4 7c0-2 1.5-3 3.5-3h9c2 0 3.5 1 3.5 3M4 7h16m-16 5h16" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <span class="nav-label whitespace-nowrap">Dataset</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-himpunan" onclick="switchTab('himpunan')" title="Himpunan">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-himpunan" onclick="switchTab('himpunan')" title="Himpunan">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <circle cx="9" cy="12" r="5" stroke-opacity="0.8"></circle>
         <circle cx="15" cy="12" r="5" stroke-opacity="0.8"></circle>
       </svg>
       <span class="nav-label whitespace-nowrap">Himpunan</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-venn" onclick="switchTab('venn')" title="Diagram Venn">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-venn" onclick="switchTab('venn')" title="Diagram Venn">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <circle cx="9" cy="10" r="4.5" stroke-opacity="0.9"></circle>
         <circle cx="15" cy="10" r="4.5" stroke-opacity="0.9"></circle>
@@ -100,27 +106,27 @@
       </svg>
       <span class="nav-label whitespace-nowrap">Diagram Venn</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-pie" onclick="switchTab('pie')" title="Inklusi-Eksklusi (PIE)">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-pie" onclick="switchTab('pie')" title="Inklusi-Eksklusi (PIE)">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M4 6h16M4 12h8m-8 6h16" stroke-linecap="round" stroke-linejoin="round"></path>
         <path d="M18 15l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <span class="nav-label whitespace-nowrap">Inklusi-Eksklusi (PIE)</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-operasi" onclick="switchTab('operasi')" title="Operasi">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-operasi" onclick="switchTab('operasi')" title="Operasi">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <span class="nav-label whitespace-nowrap">Operasi</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-panduan" onclick="switchTab('panduan')" title="Panduan">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-panduan" onclick="switchTab('panduan')" title="Panduan">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M4 19.5v-15A2.5 2.5 0 016.5 2H20v20H6.5a2.5 2.5 0 01-2.5-2.5z" stroke-linecap="round" stroke-linejoin="round"></path>
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <span class="nav-label whitespace-nowrap">Panduan</span>
     </button>
-    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group" id="nav-tentang" onclick="switchTab('tentang')" title="Tentang">
+    <button class="nav-item-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 text-slate-600 hover:bg-[#F1F5F9] hover:text-slate-900 border-l-4 border-transparent group cursor-pointer" id="nav-tentang" onclick="switchTab('tentang')" title="Tentang">
       <svg class="w-5 h-5 shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9"></circle>
         <line stroke-linecap="round" stroke-width="3" x1="12" x2="12" y1="8" y2="8.01"></line>
@@ -328,7 +334,7 @@
             </ul>
           </div>
           <div class="pt-6 border-t border-slate-100 mt-4">
-            <button class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-all duration-150 shadow-sm shadow-blue-600/25" onclick="switchTab('dataset')">
+            <button class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-all duration-150 shadow-sm shadow-blue-600/25 cursor-pointer" onclick="switchTab('dataset')">
               Kelola Dataset →
             </button>
           </div>
@@ -370,10 +376,10 @@
           <p class="text-slate-500 text-sm mt-1" id="dataset-section-subtitle">Kelola data mahasiswa yang menjadi semesta himpunan (U).</p>
         </div>
         <div class="flex items-center gap-3">
-          <button class="px-3.5 py-2 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-xl text-sm font-semibold transition-colors duration-150 flex items-center gap-1.5 shadow-xs" onclick="resetDataset()">
+          <button class="px-3.5 py-2 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-xl text-sm font-semibold transition-colors duration-150 flex items-center gap-1.5 shadow-xs cursor-pointer" onclick="resetDataset()">
             <span>↺</span> Reset Dataset
           </button>
-          <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-colors duration-150 shadow-sm shadow-blue-600/20 flex items-center gap-1.5" onclick="openModal()">
+          <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-colors duration-150 shadow-sm shadow-blue-600/20 flex items-center gap-1.5 cursor-pointer" onclick="openModal()">
             <span>+</span> Tambah Data
           </button>
         </div>
@@ -420,11 +426,11 @@
 
       <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5 overflow-hidden">
         <div class="p-4 border-b border-slate-200 flex flex-wrap items-center gap-2 bg-slate-50/70" id="dataset-filter-buttons">
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-xs transition-colors" id="filter-all" onclick="setDatasetFilter('all')">Semua (20)</button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors" id="filter-A" onclick="setDatasetFilter('A')">Himpunan A (12)</button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors" id="filter-B" onclick="setDatasetFilter('B')">Himpunan B (13)</button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors" id="filter-C" onclick="setDatasetFilter('C')">Himpunan C (12)</button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors" id="filter-none" onclick="setDatasetFilter('none')">Tidak di A, B, C (3)</button>
+          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-xs transition-colors cursor-pointer" id="filter-all" onclick="setDatasetFilter('all')">Semua (20)</button>
+          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors cursor-pointer" id="filter-A" onclick="setDatasetFilter('A')">Himpunan A (12)</button>
+          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors cursor-pointer" id="filter-B" onclick="setDatasetFilter('B')">Himpunan B (13)</button>
+          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors cursor-pointer" id="filter-C" onclick="setDatasetFilter('C')">Himpunan C (12)</button>
+          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors cursor-pointer" id="filter-none" onclick="setDatasetFilter('none')">Tidak di A, B, C (3)</button>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm">
@@ -566,7 +572,7 @@
           </p>
         </div>
         <div class="flex items-center gap-2">
-          <button class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-blue-600/25 flex items-center gap-2" onclick="switchTab('pie')">
+          <button class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-blue-600/25 flex items-center gap-2 cursor-pointer" onclick="switchTab('pie')">
             <span>Uji Prinsip Inklusi-Eksklusi (PIE)</span> →
           </button>
         </div>
@@ -579,10 +585,10 @@
             <p class="text-xs text-slate-500 mt-0.5">Pilih kombinasi himpunan untuk memfokuskan visualisasi dan kardinalitas.</p>
           </div>
           <div class="flex items-center gap-2 flex-wrap" id="venn-mode-buttons">
-            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs transition-all" onclick="setVennMode('all3')">Semua (A, B, C)</button>
-            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all" onclick="setVennMode('pair_ab')">Pasangan A &amp; B</button>
-            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all" onclick="setVennMode('pair_bc')">Pasangan B &amp; C</button>
-            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all" onclick="setVennMode('pair_ac')">Pasangan A &amp; C</button>
+            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs transition-all cursor-pointer" onclick="setVennMode('all3')">Semua (A, B, C)</button>
+            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all cursor-pointer" onclick="setVennMode('pair_ab')">Pasangan A &amp; B</button>
+            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all cursor-pointer" onclick="setVennMode('pair_bc')">Pasangan B &amp; C</button>
+            <button class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all cursor-pointer" onclick="setVennMode('pair_ac')">Pasangan A &amp; C</button>
           </div>
         </div>
 
@@ -713,8 +719,8 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
           <h3 class="font-bold text-slate-900 text-base">Pilih Mode Analisis PIE</h3>
           <div class="flex items-center gap-2">
-            <button class="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs transition-all" id="pie-mode-2" onclick="setPieMode(2)">Mode 2 Himpunan</button>
-            <button class="px-4 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all" id="pie-mode-3" onclick="setPieMode(3)">Mode 3 Himpunan</button>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs transition-all cursor-pointer" id="pie-mode-2" onclick="setPieMode(2)">Mode 2 Himpunan</button>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all cursor-pointer" id="pie-mode-3" onclick="setPieMode(3)">Mode 3 Himpunan</button>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2" id="pie-selectors-container"></div>
@@ -800,311 +806,10 @@
             </select>
           </div>
           <div class="text-xs text-slate-500 italic bg-blue-50/70 p-3 rounded-xl border border-blue-100" id="complement-note">Komplemen dihitung terhadap Semesta U: Aᶜ = {x ∈ U | x ∉ A}</div>
-          <button class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 transition-colors mt-2 shadow-sm shadow-blue-600/25 flex items-center justify-center gap-2" onclick="executeOperation()">
+          <button class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 transition-colors mt-2 shadow-sm shadow-blue-600/25 flex items-center justify-center gap-2 cursor-pointer" onclick="executeOperation()">
             <span class="font-bold">⚡</span> Jalankan Operasi
           </button>
         </div>
         <div class="lg:col-span-2 space-y-6">
           <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-3">
-              <div>
-                <h3 class="text-lg font-bold text-slate-900" id="result-title">Aᶜ (Komplemen Himpunan A)</h3>
-                <p class="text-xs text-slate-500 mt-0.5" id="result-subtitle">Aᶜ = U − A — Seluruh record dalam Semesta U yang BUKAN anggota Himpunan A</p>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200/60 font-semibold rounded-lg text-xs" id="result-count-badge">8 record (40% Semesta)</span>
-                <button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 text-xs font-medium flex items-center gap-1 transition-colors" onclick="copyResults()" title="Copy">⧉ Salin</button>
-                <button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 text-xs font-medium flex items-center gap-1 transition-colors" onclick="exportCSV()" title="Export CSV">↓ Export CSV</button>
-                <button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 text-xs font-medium flex items-center gap-1 transition-colors" onclick="executeOperation()" title="Reset">↺</button>
-              </div>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-slate-900 mb-3">Anggota Hasil Operasi</h4>
-              <div class="overflow-x-auto border border-slate-100 rounded-xl">
-                <table class="w-full text-left text-xs">
-                  <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200" id="result-table-head">
-                    <tr>
-                      <th class="py-2.5 px-3">#</th>
-                      <th class="py-2.5 px-3" id="res-th-1">ID / Kode</th>
-                      <th class="py-2.5 px-3" id="res-th-2">Nama Produk</th>
-                      <th class="py-2.5 px-3" id="res-th-3">Harga</th>
-                      <th class="py-2.5 px-3" id="res-th-4">Promo</th>
-                      <th class="py-2.5 px-3" id="res-th-5">Stok</th>
-                      <th class="py-2.5 px-3">Himpunan</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100" id="result-table-body"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END: Operasi Section -->
-
-    <!-- BEGIN: Panduan Section -->
-    <section class="space-y-8 hidden" id="section-panduan">
-      <div class="bg-white p-7 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
-          <div class="space-y-2 max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200/60 rounded-full text-xs font-bold text-blue-700 tracking-wide uppercase">
-              <span>📖</span> Panduan Resmi SetVeen
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">Panduan Penggunaan Sistem Klasifikasi SetVeen</h2>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Dokumentasi lengkap untuk memandu Anda memahami struktur data, pembentukan himpunan diskrit, simulasi kalkulator operasi himpunan, diagram Venn interaktif, hingga prinsip Inklusi-Eksklusi (PIE).
-            </p>
-          </div>
-          <div class="shrink-0 flex items-center gap-2.5">
-            <button class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-blue-600/25 flex items-center gap-2" onclick="switchTab('pie')">
-              <span>Coba Kalkulator PIE</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-bold text-slate-900">Alur Cepat (Quick Start)</h3>
-            <p class="text-xs text-slate-500">4 langkah mudah menjalankan sistem klasifikasi data himpunan dari awal hingga akhir.</p>
-          </div>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">4 Tahapan Inti</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm shadow-blue-500/5 flex flex-col justify-between hover:border-blue-300 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-xs">1</span>
-                <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Tahap 1</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-base">Eksplorasi Dashboard</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Amati kardinalitas total Semesta (U) serta ukuran himpunan bagian A, B, dan C. Periksa riwayat ringkas kalkulasi operasi himpunan terakhir.
-              </p>
-            </div>
-            <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-400">Target Fitur:</span>
-              <button class="text-blue-600 font-semibold hover:underline" onclick="switchTab('dashboard')">Buka Dashboard →</button>
-            </div>
-          </div>
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm shadow-blue-500/5 flex flex-col justify-between hover:border-blue-300 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-xs">2</span>
-                <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Tahap 2</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-base">Kelola Dataset (Toggle 1 / 2)</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Ganti tipe dataset di topbar (Mahasiswa atau Produk Toko) dan tambah data baru dengan atribut dinamis sesuai kebutuhan.
-              </p>
-            </div>
-            <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-400">Target Fitur:</span>
-              <button class="text-blue-600 font-semibold hover:underline" onclick="switchTab('dataset')">Buka Dataset →</button>
-            </div>
-          </div>
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm shadow-blue-500/5 flex flex-col justify-between hover:border-blue-300 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-xs">3</span>
-                <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Tahap 3</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-base">Diagram Venn Interaktif</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Pilih subset pasangan atau klik sektor diagram untuk menampilkan daftar elemen pada wilayah terpilih.
-              </p>
-            </div>
-            <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-400">Target Fitur:</span>
-              <button class="text-blue-600 font-semibold hover:underline" onclick="switchTab('venn')">Buka Venn →</button>
-            </div>
-          </div>
-          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-sm shadow-blue-500/5 flex flex-col justify-between hover:border-blue-300 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-xs">4</span>
-                <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Tahap 4</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-base">Inklusi-Eksklusi (PIE)</h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Jalankan perhitungan kalkulator PIE 2 dan 3 himpunan secara real-time dengan rincian langkah demi langkah.
-              </p>
-            </div>
-            <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-400">Target Fitur:</span>
-              <button class="text-blue-600 font-semibold hover:underline" onclick="switchTab('pie')">Buka PIE →</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END: Panduan Section -->
-
-    <!-- BEGIN: Tentang Section -->
-    <section class="space-y-6 hidden" id="section-tentang">
-      <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5 flex flex-col md:flex-row items-start md:items-center gap-6">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-700 to-blue-500 flex items-center justify-center text-white font-bold text-3xl shrink-0 shadow-lg shadow-blue-500/25">G</div>
-        <div>
-          <h2 class="text-2xl font-black text-slate-900">SetVeen</h2>
-          <p class="text-sm font-semibold text-blue-600 mb-1">Sistem Klasifikasi Data dengan Himpunan</p>
-          <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">
-            Web application interaktif untuk memvisualisasikan penerapan konsep himpunan pada klasifikasi data sederhana. Dibuat sebagai proyek berbasis pembelajaran (PJBL-2) dalam mata kuliah Matematika Diskrit.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5">
-          <h3 class="font-bold text-slate-900 text-base mb-4 border-b border-slate-100 pb-3">Informasi Proyek</h3>
-          <table class="w-full text-sm">
-            <tbody class="divide-y divide-slate-100">
-              <tr><td class="py-3 text-slate-500 font-medium">Mata Kuliah</td><td class="py-3 font-semibold text-slate-800 text-right">Matematika Diskrit</td></tr>
-              <tr><td class="py-3 text-slate-500 font-medium">Tipe Proyek</td><td class="py-3 font-semibold text-blue-600 text-right">PJBL-2</td></tr>
-              <tr><td class="py-3 text-slate-500 font-medium">Total Dataset Initial</td><td class="py-3 font-semibold text-slate-800 text-right">20 Record Mahasiswa / 20 Produk</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5">
-          <h3 class="font-bold text-slate-900 text-base mb-4 border-b border-slate-100 pb-3">Teknologi</h3>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">HTML5</span><span class="text-slate-500 text-xs">Struktur halaman web</span></li>
-            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">CSS3 / Tailwind</span><span class="text-slate-500 text-xs">Modern Blue &amp; White Theme</span></li>
-            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">JavaScript</span><span class="text-slate-500 text-xs">Logika operasi himpunan</span></li>
-            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">SVG</span><span class="text-slate-500 text-xs">Visualisasi Diagram Venn</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm shadow-blue-500/5 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-          <div>
-            <h3 class="font-bold text-slate-900 text-base">Anggota Kelompok G</h3>
-            <p class="text-xs text-slate-500 mt-0.5">Daftar terstruktur anggota Kelompok G - PJBL 2 Matematika Diskrit</p>
-          </div>
-          <span class="px-3 py-1 bg-blue-50 text-blue-700 font-bold rounded-full text-xs border border-blue-200/60">6 Anggota</span>
-        </div>
-
-        <div class="flex flex-col space-y-2.5">
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">01</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Muhammad Fakrurazi</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210098</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Ketua / Koordinator Proyek</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">02</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Mohammad Aqmal</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210109</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Pemograman / Pengembang Sistem</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">03</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Padillah</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210137</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Koordinator Dokumentasi</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">04</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Sakinah</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210397</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Koordinator Presentasi</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">05</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Niswatul Khaira</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210386</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Anggota</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 hover:border-blue-300 hover:bg-blue-50/20 transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3.5">
-              <span class="text-blue-600 font-extrabold text-xs bg-white w-8 h-8 rounded-lg flex items-center justify-center border border-slate-200 shadow-xs">06</span>
-              <div>
-                <p class="font-bold text-sm text-slate-800">Fajar Ramadhan</p>
-                <p class="text-xs text-slate-500 font-medium mt-0.5">NIM: 25210105</p>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold text-xs shadow-2xs">Anggota</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END: Tentang Section -->
-  </main>
-</div>
-<!-- END: Main Content Area -->
-
-<!-- BEGIN: Modal Tambah Data -->
-<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 hidden" id="modal-add-data">
-  <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
-    <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-      <h3 class="font-bold text-slate-900 text-lg" id="modal-title-text">Tambah Data Mahasiswa</h3>
-      <button class="text-slate-400 hover:text-slate-700 text-lg font-semibold" onclick="closeModal()">✕</button>
-    </div>
-    <form class="space-y-4" id="form-tambah-mahasiswa" onsubmit="saveNewData(event)">
-      <div>
-        <label class="block text-xs font-semibold text-slate-500 mb-1.5" id="label-form-id">NIM Mahasiswa</label>
-        <input type="text" id="input-id" required class="w-full text-sm border-slate-200 rounded-xl focus:border-blue-600 focus:ring focus:ring-blue-600/20" placeholder="Contoh: 25210117">
-      </div>
-      <div>
-        <label class="block text-xs font-semibold text-slate-500 mb-1.5" id="label-form-name">Nama Mahasiswa</label>
-        <input type="text" id="input-name" required class="w-full text-sm border-slate-200 rounded-xl focus:border-blue-600 focus:ring focus:ring-blue-600/20" placeholder="Nama Mahasiswa">
-      </div>
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block text-xs font-semibold text-slate-500 mb-1.5" id="label-form-val1">Nilai (0-100)</label>
-          <input type="number" id="input-val1" min="0" max="100" required class="w-full text-sm border-slate-200 rounded-xl focus:border-blue-600 focus:ring focus:ring-blue-600/20" placeholder="85">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-500 mb-1.5" id="label-form-val2">Kehadiran (%)</label>
-          <input type="number" id="input-val2" min="0" max="100" required class="w-full text-sm border-slate-200 rounded-xl focus:border-blue-600 focus:ring focus:ring-blue-600/20" placeholder="90">
-        </div>
-      </div>
-      <div>
-        <label class="block text-xs font-semibold text-slate-500 mb-1.5" id="label-form-status">Status Organisasi</label>
-        <select id="input-status" class="w-full text-sm border-slate-200 rounded-xl focus:border-blue-600 focus:ring focus:ring-blue-600/20">
-          <option value="Ya">Ya (Aktif)</option>
-          <option value="Tidak">Tidak</option>
-        </select>
-      </div>
-      <div class="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
-        <button type="button" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors" onclick="closeModal()">Batal</button>
-        <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shadow-sm">Simpan Data</button>
-      </div>
-    </form>
-  </div>
-</div>
-<!-- END: Modal Tambah Data -->
-
-<!-- Link JavaScript Eksternal -->
-<script src="script.js"></script>
-</body>
-</html>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b
