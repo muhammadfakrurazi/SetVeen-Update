@@ -354,7 +354,7 @@ function renderMemberList(containerId, items) {
           <span class="font-bold text-slate-400 w-5">${idx+1}.</span>
           <div>
             <p class="font-bold text-slate-800">${item.name}</p>
-            <p class="text-[10px] text-slate-500">${item.id} \vert{}${currentDatasetType===1?'Nilai: '+item.val1:'Harga: Rp '+item.val1.toLocaleString()}</p>
+            <p class="text-[10px] text-slate-500">${item.id} | ${currentDatasetType===1?'Nilai: '+item.val1:'Harga: Rp '+item.val1.toLocaleString()}</p>
           </div>
         </div>
         <span class="px-2 py-0.5 rounded-md text-[10px] font-bold border ${badgeColor}">${currentDatasetType===1?'Kehadiran: '+item.val2+'%':'Stok: '+item.val2}</span>
@@ -601,100 +601,4 @@ window.calculatePIE = function() {
     return false;
   };
 
-  let setA_items = dataset.filter(i => checkSet(i, s1));
-  let setB_items = dataset.filter(i => checkSet(i, s2));
-
-  let unionItems = [];
-  if (currentPieMode === 2) {
-    unionItems = dataset.filter(i => checkSet(i, s1) || checkSet(i, s2));
-    let interItems = dataset.filter(i => checkSet(i, s1) && checkSet(i, s2));
-    
-    document.getElementById('pie-result-heading').innerText = `Formula PIE 2 Himpunan (${s1} ∪${s2})`;
-    document.getElementById('pie-final-cardinality').innerText = `|${s1} ∪ ${s2}\vert{} =${unionItems.length}`;
-    document.getElementById('pie-formula-display').innerText = `|${s1} ∪${s2}| = |${s1}\vert{} + \vert{}${s2}| − |${s1} ∩${s2}|`;
-
-    document.getElementById('pie-breakdown-steps').innerHTML = `
-      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/70">1. Kardinalitas |${s1}\vert{} = <strong>${setA_items.length}</strong></div>
-      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/70">2. Kardinalitas |${s2}\vert{} = <strong>${setB_items.length}</strong></div>
-      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/70">3. Irisan |${s1} ∩ ${s2}\vert{} = <strong>${interItems.length}</strong></div>
-      <div class="p-2.5 rounded-lg bg-blue-50 text-blue-900 border border-blue-200 font-bold">Hasil: ${setA_items.length} +${setB_items.length} − ${interItems.length} =${unionItems.length}</div>
-    `;
-  } else {
-    unionItems = dataset.filter(i => checkSet(i, s1) || checkSet(i, s2) || checkSet(i, s3));
-    let interAB = dataset.filter(i => checkSet(i, s1) && checkSet(i, s2));
-    let interAC = dataset.filter(i => checkSet(i, s1) && checkSet(i, s3));
-    let interBC = dataset.filter(i => checkSet(i, s2) && checkSet(i, s3));
-    let interABC = dataset.filter(i => checkSet(i, s1) && checkSet(i, s2) && checkSet(i, s3));
-
-    document.getElementById('pie-result-heading').innerText = `Formula PIE 3 Himpunan (${s1} ∪ ${s2} ∪${s3})`;
-    document.getElementById('pie-final-cardinality').innerText = `|${s1} ∪${s2} ∪ ${s3}\vert{} =${unionItems.length}`;
-    document.getElementById('pie-formula-display').innerText = `|${s1} ∪ ${s2} ∪${s3}| = |${s1}\vert{} + \vert{}${s2}| + |${s3}\vert{} − (\vert{}${s1}∩${s2}\vert{} + \vert{}${s1}∩${s3}\vert{} + \vert{}${s2}∩${s3}\vert{}) + \vert{}${s1}∩${s2}∩${s3}|`;
-
-    document.getElementById('pie-breakdown-steps').innerHTML = `
-      <div class="p-2 rounded-lg bg-slate-50 border border-slate-200/70">Irisan 2: |${s1}∩${s2}\vert{}=${interAB.length}, |${s1}∩${s3}|=${interAC.length}, \vert{}${s2}∩${s3}\vert{}=${interBC.length}</div>
-      <div class="p-2 rounded-lg bg-slate-50 border border-slate-200/70">Irisan 3: |${s1}∩${s2}∩${s3}\vert{}=${interABC.length}</div>
-      <div class="p-2.5 rounded-lg bg-blue-50 text-blue-900 border border-blue-200 font-bold">Total Gabungan = ${unionItems.length}</div>
-    `;
-  }
-
-  lastCalculatedPIEMembers = unionItems;
-  document.getElementById('pie-members-count').innerText = `${unionItems.length} Elemen`;
-  renderMemberList('pie-members-list', unionItems);
-}
-
-window.exportPIECSV = function() {
-  let csv = currentDatasetType === 1 ? "NIM,Nama,Nilai,Organisasi,Kehadiran\n" : "Kode,Nama Produk,Harga,Promo,Stok\n";
-  lastCalculatedPIEMembers.forEach(i => {
-    csv += `"${i.id}","${i.name}",${i.val1},"${i.status}",${i.val2}\n`;
-  });
-  downloadCSV(csv, currentDatasetType === 1 ? "hasil-pie-mahasiswa.csv" : "hasil-pie-produk.csv");
-}
-
-window.handleOpTypeChange = function() {
-  const type = document.getElementById('op-type').value;
-  const group2 = document.getElementById('group-set-2');
-  const symbolView = document.getElementById('op-symbol-view');
-  const note = document.getElementById('complement-note');
-
-  if (type === 'complement') {
-    group2.classList.add('hidden');
-    symbolView.classList.add('hidden');
-    note.classList.remove('hidden');
-  } else if (type === 'union' || type === 'intersection') {
-    group2.classList.remove('hidden');
-    symbolView.classList.add('hidden');
-    note.classList.add('hidden');
-  } else {
-    group2.classList.remove('hidden');
-    symbolView.classList.remove('hidden');
-    note.classList.add('hidden');
-  }
-}
-
-let lastOpMembers = [];
-
-window.executeOperation = function() {
-  const type = document.getElementById('op-type').value;
-  const s1 = document.getElementById('op-set-1').value;
-  const s2 = document.getElementById('op-set-2').value;
-
-  const getSetItems = (key) => {
-    if (key === 'A') return dataset.filter(i => i._inA);
-    if (key === 'B') return dataset.filter(i => i._inB);
-    if (key === 'C') return dataset.filter(i => i._inC);
-    return dataset;
-  };
-
-  let items1 = getSetItems(s1);
-  let items2 = getSetItems(s2);
-  let resultItems = [];
-  let title = "";
-  let subtitle = "";
-
-  if (type === 'union') {
-    let map = new Map();
-    items1.forEach(i => map.set(i.id, i));
-    items2.forEach(i => map.set(i.id, i));
-    resultItems = Array.from(map.values());
-    title = `Union (${s1} ∪${s2})`;
-    subtitle = `Gabungan seluruh elemen dari himpunan
+  let setA_items = dataset
